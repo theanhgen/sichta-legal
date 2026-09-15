@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zásady ochrany osobních údajů – Šichta</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      color: #1a1a1a;
+      line-height: 1.7;
+    }
+    h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 1.1rem; margin-top: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.25rem; }
+    p, li { font-size: 0.97rem; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 2rem; }
+    a { color: #0071e3; }
+    footer { margin-top: 3rem; font-size: 0.85rem; color: #888; border-top: 1px solid #e5e5e5; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+
+<h1>Zásady ochrany osobních údajů</h1>
+<p class="meta">
+  Aplikace: <strong>Šichta</strong><br>
+  Účinnost od: <strong>30. 7. 2026</strong><br>
+  Poslední aktualizace: <strong>15. 9. 2026</strong>
+</p>
+
+<h2>1. Správce osobních údajů</h2>
+<p>
+  Tuto aplikaci provozuje:<br>
+  <strong>Matej Nguyen</strong><br>
+  Kontaktní e-mail: <strong>bibybi@icloud.com</strong>
+</p>
+
+<h2>2. Jaká data shromažďujeme a kam se dostávají?</h2>
+<p>
+  Všechna data, která zadáte (jméno pracovní pozice, hodinová mzda, časy směn, spropitné, poznámky), jsou primárně uložena na vašem zařízení prostřednictvím technologie SwiftData. Aplikace <strong>neobsahuje žádné reklamní sítě ani analytické či trackovací knihovny třetích stran</strong>. Část dat přesto opouští vaše zařízení, a to třemi konkrétními způsoby popsanými níže.
+</p>
+<h3 style="font-size:1rem;margin-top:1.25rem;">2.1 Synchronizace přes iCloud (vždy aktivní)</h3>
+<p>
+  Šichta používá privátní databázi Apple CloudKit k synchronizaci dat mezi vašimi vlastními zařízeními, pokud jste přihlášeni k iCloud. Tato synchronizace probíhá přímo mezi vaším zařízením a vaším osobním iCloud účtem; my k těmto datům nemáme přístup. Řídí se
+  <a href="https://www.apple.com/legal/privacy/cs/" target="_blank" rel="noopener">Zásadami ochrany osobních údajů Apple</a>.
+</p>
+<h3 style="font-size:1rem;margin-top:1.25rem;">2.2 Kurzy měn (vždy aktivní, bez osobních údajů)</h3>
+<p>
+  Pokud sledujete práci v cizí měně, aplikace stahuje denní kurzovní lístek z veřejného API České národní banky (<code>api.cnb.cz</code>). Tento požadavek odesílá pouze datum — žádná data, která by vás identifikovala nebo popisovala vaše směny, mzdy či spropitné.
+</p>
+<h3 style="font-size:1rem;margin-top:1.25rem;">2.3 AI Sync (volitelné — vypnuto, dokud jej sami nezapnete)</h3>
+<p>
+  Nastavení obsahuje volitelnou funkci „AI Sync", která umožňuje spravovat vaše směny pomocí AI asistenta (např. ChatGPT nebo Claude). Tato funkce je <strong>ve výchozím stavu vypnutá</strong> a aktivuje se až poté, co v Nastavení zadáte sync token a stisknete „Synchronizovat nyní". Po zapnutí aplikace odesílá vaše data o pracích a směnách (názvy prací, hodinové mzdy, časy směn, spropitné, poznámky) přes šifrované (HTTPS) spojení, ověřené vaším sync tokenem, na server, který provozujeme my. Pokud si v Nastavení upravíte adresu serveru, požadavky poté míří na vámi zadanou adresu a tento přenos je mimo naši kontrolu. Odstranění tokenu v Nastavení odešle ověřený požadavek na smazání a zrušení přístupu na nastavený server: po úspěšné odpovědi server okamžitě smaže synchronizované práce, směny a záznamy o mazání, zruší všechny sync tokeny uživatele a aplikace teprve poté odstraní místní token. Pokud požadavek selže, aplikace místní token ponechá a zobrazí chybu, místo aby tvrdila, že výmaz proběhl; zkuste akci zopakovat nebo nás kontaktujte, pokud server není dostupný.
+</p>
+
+<h2>3. Zálohy zařízení přes iCloud (Apple)</h2>
+<p>
+  Nezávisle na synchronizaci CloudKit popsané v bodě 2.1: pokud máte na svém zařízení povolenu zálohu iCloud, může iOS automaticky zálohovat data aplikace na váš iCloud účet v rámci běžné zálohy zařízení. Tato záloha je plně pod vaší kontrolou a řídí se
+  <a href="https://www.apple.com/legal/privacy/cs/" target="_blank" rel="noopener">Zásadami ochrany osobních údajů Apple</a>.
+  My k těmto datům nemáme přístup.
+</p>
+
+<h2>4. Nákupy v aplikaci</h2>
+<p>
+  Pokud aplikace nabízí placené funkce nebo předplatné, jsou veškeré platební transakce zpracovávány výhradně společností Apple prostřednictvím App Store. <strong>Nezpracováváme ani neuchováváme žádné platební informace.</strong> Na nás se vztahují pouze souhrnné, neidentifikující prodejní statistiky poskytované společností Apple přes App Store Connect. Platební transakce se řídí
+  <a href="https://www.apple.com/legal/privacy/cs/" target="_blank" rel="noopener">Zásadami ochrany osobních údajů Apple</a>.
+</p>
+
+<h2>5. Sdílení dat</h2>
+<p>
+  Neprodáváme ani nepronajímáme vaše data a nesdílíme je s inzerenty ani analytickými službami. Pokud zapnete AI Sync (2.3), vaše data o pracích a směnách se odešlou na server nastavený v aplikaci — ve výchozím stavu server, který provozujeme my — a slouží výhradně k tomu, aby k vašim směnám mohl přistupovat váš připojený AI asistent. Tato data dále neprodáváme ani nesdílíme s třetími stranami.
+</p>
+
+<h2>6. Bezpečnost</h2>
+<p>
+  Data uložená lokálně chrání zabezpečení vašeho zařízení iOS (PIN, Face ID, Touch ID) — doporučujeme používat silný zámek obrazovky. Pokud používáte AI Sync, vaše data chrání také sync token: udržujte jej v tajnosti. Odstranění tokenu v Nastavení vyžádá okamžitý výmaz dat na serveru a zrušení přístupu na nastaveném serveru; aplikace místní token neodstraní, dokud server nepotvrdí dokončení.
+</p>
+
+<h2>7. Práva subjektů údajů (GDPR)</h2>
+<p>
+  V souladu s nařízením GDPR (EU) 2016/679 máte právo na přístup ke svým datům, jejich opravu nebo výmaz. U dat uložených pouze na vašem zařízení nebo synchronizovaných přes váš vlastní iCloud účet (2.1) lze tato práva uplatnit přímo na vašem zařízení — data smažete odinstalací aplikace nebo v nastavení aplikace. Pokud používáte AI Sync (2.3), odstranění sync tokenu vyžádá okamžitý výmaz synchronizovaných dat a zrušení všech sync tokenů na nastaveném serveru. Výchozí server neuchovává samostatnou zálohu ani retenční kopii dat AI Sync. Pokud výmaz nelze dokončit, token zůstane v aplikaci a můžete nás kontaktovat na adrese uvedené v bodě 11.
+</p>
+<p>
+  Máte rovněž právo podat stížnost u dozorového orgánu:<br>
+  <strong>Úřad pro ochranu osobních údajů (ÚOOÚ)</strong><br>
+  Pplk. Sochora 27, 170 00 Praha 7<br>
+  <a href="https://www.uoou.gov.cz" target="_blank" rel="noopener">www.uoou.gov.cz</a>
+</p>
+
+<h2>8. Pověřenec pro ochranu osobních údajů (DPO)</h2>
+<p>
+  Nejsme povinni jmenovat pověřence pro ochranu osobních údajů, neboť nezpracováváme osobní údaje ve velkém rozsahu ani systematicky (čl. 37 GDPR).
+</p>
+
+<h2>9. Děti</h2>
+<p>
+  Aplikace není zaměřena na děti mladší 13 let a vědomě neshromažďujeme data od dětí mladších 13 let.
+</p>
+
+<h2>10. Změny těchto zásad</h2>
+<p>
+  V případě změn těchto zásad aktualizujeme datum „Poslední aktualizace" v záhlaví dokumentu. Doporučujeme tuto stránku příležitostně navštívit.
+</p>
+
+<h2>11. Kontakt</h2>
+<p>
+  Máte-li otázky k těmto zásadám, napište nám na:<br>
+  <strong>bibybi@icloud.com</strong>
+</p>
+
+<footer>
+  Šichta &mdash; Sledování směn a příjmů &mdash; iOS aplikace<br>
+  &copy; 2026 Matej Nguyen
+</footer>
+
+</body>
+</html>

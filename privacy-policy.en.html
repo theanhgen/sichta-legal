@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy – Šichta</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      color: #1a1a1a;
+      line-height: 1.7;
+    }
+    h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 1.1rem; margin-top: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.25rem; }
+    p, li { font-size: 0.97rem; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 2rem; }
+    a { color: #0071e3; }
+    footer { margin-top: 3rem; font-size: 0.85rem; color: #888; border-top: 1px solid #e5e5e5; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+
+<h1>Privacy Policy</h1>
+<p class="meta">
+  App: <strong>Šichta</strong><br>
+  Effective date: <strong>30 July 2026</strong><br>
+  Last updated: <strong>15 September 2026</strong>
+</p>
+
+<h2>1. Data Controller</h2>
+<p>
+  This app is operated by:<br>
+  <strong>Matej Nguyen</strong><br>
+  Contact email: <strong>bibybi@icloud.com</strong>
+</p>
+
+<h2>2. What data do we collect, and where does it go?</h2>
+<p>
+  All data you enter into the app — job name, hourly wage, shift times, tips, notes — is stored locally on your device using Apple's SwiftData framework. The app contains <strong>no advertising networks and no third-party analytics or tracking SDKs</strong>. Some data does leave your device in the three specific ways described below.
+</p>
+<h3 style="font-size:1rem;margin-top:1.25rem;">2.1 iCloud sync (always on)</h3>
+<p>
+  Šichta uses Apple's CloudKit <strong>private database</strong> to sync your data across your own devices when you're signed into iCloud. This sync happens directly between your device and your personal iCloud account; we do not have access to this data. It is governed by
+  <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>.
+</p>
+<h3 style="font-size:1rem;margin-top:1.25rem;">2.2 Currency exchange rates (always on, no personal data)</h3>
+<p>
+  If you track a job in a foreign currency, the app fetches daily exchange rates from the Czech National Bank's public API (<code>api.cnb.cz</code>). This request sends only a date — no data that identifies you or describes your shifts, wages, or tips.
+</p>
+<h3 style="font-size:1rem;margin-top:1.25rem;">2.3 AI Sync (optional — off unless you turn it on)</h3>
+<p>
+  Settings includes an optional "AI Sync" feature that lets you use an AI assistant (e.g. ChatGPT or Claude) to view and manage your shift data. This feature is <strong>off by default</strong> and only activates once you enter a sync token in Settings and tap "Sync now." When enabled, the app sends your job and shift data (job names, hourly wages, shift times, tips, notes) over an encrypted (HTTPS) connection, authenticated with your sync token, to a server we operate. If you edit the server address in Settings, requests go instead to the address you configured, and that transfer is outside our control. Removing the token from Settings sends an authenticated revoke-and-delete request to the configured server: on a successful response, the server immediately deletes the synced jobs, shifts, and deletion records, revokes all sync tokens for that user, and only then does the app delete the local token. If the request fails, the app keeps the local token and shows an error instead of claiming that deletion completed; retry or contact us if the server remains unavailable.
+</p>
+
+<h2>3. iCloud Device Backups (Apple)</h2>
+<p>
+  Separately from the CloudKit sync described in 2.1, if you have iCloud device backup enabled on your device, iOS may automatically back up the app's local data to your iCloud account as part of your general device backup. This backup is entirely under your control and is governed by
+  <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>.
+  We have no access to this data.
+</p>
+
+<h2>4. In-App Purchases</h2>
+<p>
+  If the app offers paid features or subscriptions, all payment transactions are processed exclusively by Apple through the App Store. <strong>We do not process or store any payment information.</strong> We only receive aggregated, non-identifying sales reports from Apple via App Store Connect. All transactions are governed by
+  <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>.
+</p>
+
+<h2>5. Data Sharing</h2>
+<p>
+  We do not sell or rent your data, and we do not share it with advertisers or analytics providers. If you enable AI Sync (2.3), your job and shift data is sent to the server configured in Settings — by default a server we operate, used solely to let your connected AI assistant read and update your shift data. We do not sell or otherwise share that data with third parties.
+</p>
+
+<h2>6. Security</h2>
+<p>
+  Your locally-stored data is protected by your iOS device protection (PIN, Face ID, Touch ID) — we recommend using a strong screen lock. If you use AI Sync, your data is also protected by your sync token: keep it private. Removing the token from Settings requests immediate server-side deletion and revocation on the configured server; the app does not remove the local token until that server confirms completion.
+</p>
+
+<h2>7. Your Rights under GDPR</h2>
+<p>
+  Under Regulation (EU) 2016/679 (GDPR), you have the right to access, correct, or delete your data. For data stored only on your device or synced via your own iCloud account (2.1), these rights can be exercised directly on your device — data is deleted by uninstalling the app or via in-app controls. If you have used AI Sync (2.3), removing the sync token requests immediate deletion of synced data and revocation of all sync tokens on the configured server. The default server does not retain a separate backup or retention copy of AI Sync data. If deletion cannot be completed, the token remains in the app and you can contact us at the address in Section 11.
+</p>
+<p>
+  You also have the right to lodge a complaint with the supervisory authority:<br>
+  <strong>Office for Personal Data Protection (Úřad pro ochranu osobních údajů – ÚOOÚ)</strong><br>
+  Pplk. Sochora 27, 170 00 Prague 7, Czech Republic<br>
+  <a href="https://www.uoou.gov.cz" target="_blank" rel="noopener">www.uoou.gov.cz</a>
+</p>
+
+<h2>8. Data Protection Officer (DPO)</h2>
+<p>
+  We are not required to appoint a Data Protection Officer as we do not carry out large-scale or systematic processing of personal data (Art. 37 GDPR).
+</p>
+
+<h2>9. Children</h2>
+<p>
+  The app is not directed at children under 13, and we do not knowingly collect data from children under 13.
+</p>
+
+<h2>10. Changes to This Policy</h2>
+<p>
+  If this policy changes, we will update the "Last updated" date at the top of this document. We encourage you to review this page occasionally.
+</p>
+
+<h2>11. Contact</h2>
+<p>
+  For questions about this policy, contact us at:<br>
+  <strong>bibybi@icloud.com</strong>
+</p>
+
+<footer>
+  Šichta &mdash; Shift &amp; Income Tracker &mdash; iOS App<br>
+  &copy; 2026 Matej Nguyen
+</footer>
+
+</body>
+</html>
