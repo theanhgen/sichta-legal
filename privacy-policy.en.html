@@ -27,7 +27,7 @@
 <p class="meta">
   App: <strong>Šichta</strong><br>
   Effective date: <strong>30 July 2026</strong><br>
-  Last updated: <strong>15 September 2026</strong>
+  Last updated: <strong>18 September 2026</strong>
 </p>
 
 <h2>1. Data Controller</h2>
@@ -39,7 +39,7 @@
 
 <h2>2. What data do we collect, and where does it go?</h2>
 <p>
-  All data you enter into the app — job name, hourly wage, shift times, tips, notes — is stored locally on your device using Apple's SwiftData framework. The app contains <strong>no advertising networks and no third-party analytics or tracking SDKs</strong>. Some data does leave your device in the three specific ways described below.
+  All data you enter into the app — job name, hourly wage, shift times, tips, notes — is stored locally on your device using Apple's SwiftData framework. The app contains <strong>no advertising networks and does not track you across apps or websites</strong>. Some data leaves your device in the four specific ways described below.
 </p>
 <h3 style="font-size:1rem;margin-top:1.25rem;">2.1 iCloud sync (always on)</h3>
 <p>
@@ -53,6 +53,16 @@
 <h3 style="font-size:1rem;margin-top:1.25rem;">2.3 AI Sync (optional — off unless you turn it on)</h3>
 <p>
   Settings includes an optional "AI Sync" feature that lets you use an AI assistant (e.g. ChatGPT or Claude) to view and manage your shift data. This feature is <strong>off by default</strong> and only activates once you enter a sync token in Settings and tap "Sync now." When enabled, the app sends your job and shift data (job names, hourly wages, shift times, tips, notes) over an encrypted (HTTPS) connection, authenticated with your sync token, to a server we operate. If you edit the server address in Settings, requests go instead to the address you configured, and that transfer is outside our control. Removing the token from Settings sends an authenticated revoke-and-delete request to the configured server: on a successful response, the server immediately deletes the synced jobs, shifts, and deletion records, revokes all sync tokens for that user, and only then does the app delete the local token. If the request fails, the app keeps the local token and shows an error instead of claiming that deletion completed; retry or contact us if the server remains unavailable.
+</p>
+<h3 style="font-size:1rem;margin-top:1.25rem;">2.4 Anonymous product analytics (on by default, can be turned off)</h3>
+<p>
+  To understand whether setup is completed and which features are used, the app sends a small number of usage events to <strong>our own server</strong> — the same one described in 2.3, on a separate address that handles nothing else. There is no analytics company involved, no analytics SDK in the app, and no advertising network. <strong>This is switched on when you install the app.</strong> You can turn it off at any time in Settings → Privacy, and doing so discards the installation identifier described below and deletes anything still waiting to be sent, so nothing sent afterwards can be connected to what was sent before.
+</p>
+<p>
+  What is sent: event names from a fixed list (for example, which setup step you reached, or that a shift was added by hand rather than by timer), the app version and build, your iOS version to one decimal place, whether the device is a phone or a tablet, the app's language, and a random identifier generated on your device for this installation. That identifier is not your device's advertising identifier and not Apple's identifier for vendors — it is a random value created on your phone, and it is the only thing connecting one install's events to each other.
+</p>
+<p>
+  We do not send workplace names, wages, earnings, tips, payment amounts, contract type, notes, exact shift dates or times, calendar text, addresses, coordinates or geofence data. This is not only a promise: the server accepts only event names and property values from a fixed list and discards anything else before storing it, so a mistake in the app cannot result in us holding that data. Event times are rounded down to the minute, and <strong>your IP address is never recorded</strong>. These usage events are never combined with the shift data from 2.3, and the server has no way to tell which account, if any, an installation identifier belongs to. The data is stored in the EU, on hardware we run, and is deleted automatically after at most 400 days.
 </p>
 
 <h2>3. iCloud Device Backups (Apple)</h2>
@@ -70,7 +80,7 @@
 
 <h2>5. Data Sharing</h2>
 <p>
-  We do not sell or rent your data, and we do not share it with advertisers or analytics providers. If you enable AI Sync (2.3), your job and shift data is sent to the server configured in Settings — by default a server we operate, used solely to let your connected AI assistant read and update your shift data. We do not sell or otherwise share that data with third parties.
+  We do not sell or rent your data, do not share it with advertisers, and use no third-party analytics provider. The usage data described in 2.4 stays on our own server. If you enable AI Sync (2.3), your job and shift data is sent to the server configured in Settings — by default a server we operate, used solely to let your connected AI assistant read and update your shift data. We do not sell or otherwise share that data with third parties.
 </p>
 
 <h2>6. Security</h2>

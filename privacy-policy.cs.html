@@ -27,7 +27,7 @@
 <p class="meta">
   Aplikace: <strong>Šichta</strong><br>
   Účinnost od: <strong>30. 7. 2026</strong><br>
-  Poslední aktualizace: <strong>15. 9. 2026</strong>
+  Poslední aktualizace: <strong>18. září 2026</strong>
 </p>
 
 <h2>1. Správce osobních údajů</h2>
@@ -39,7 +39,7 @@
 
 <h2>2. Jaká data shromažďujeme a kam se dostávají?</h2>
 <p>
-  Všechna data, která zadáte (jméno pracovní pozice, hodinová mzda, časy směn, spropitné, poznámky), jsou primárně uložena na vašem zařízení prostřednictvím technologie SwiftData. Aplikace <strong>neobsahuje žádné reklamní sítě ani analytické či trackovací knihovny třetích stran</strong>. Část dat přesto opouští vaše zařízení, a to třemi konkrétními způsoby popsanými níže.
+  Všechna data, která zadáte (jméno pracovní pozice, hodinová mzda, časy směn, spropitné, poznámky), jsou primárně uložena na vašem zařízení prostřednictvím technologie SwiftData. Aplikace <strong>neobsahuje žádné reklamní sítě a nesleduje vás napříč aplikacemi ani weby</strong>. Část dat přesto opouští vaše zařízení, a to čtyřmi konkrétními způsoby popsanými níže.
 </p>
 <h3 style="font-size:1rem;margin-top:1.25rem;">2.1 Synchronizace přes iCloud (vždy aktivní)</h3>
 <p>
@@ -53,6 +53,16 @@
 <h3 style="font-size:1rem;margin-top:1.25rem;">2.3 AI Sync (volitelné — vypnuto, dokud jej sami nezapnete)</h3>
 <p>
   Nastavení obsahuje volitelnou funkci „AI Sync", která umožňuje spravovat vaše směny pomocí AI asistenta (např. ChatGPT nebo Claude). Tato funkce je <strong>ve výchozím stavu vypnutá</strong> a aktivuje se až poté, co v Nastavení zadáte sync token a stisknete „Synchronizovat nyní". Po zapnutí aplikace odesílá vaše data o pracích a směnách (názvy prací, hodinové mzdy, časy směn, spropitné, poznámky) přes šifrované (HTTPS) spojení, ověřené vaším sync tokenem, na server, který provozujeme my. Pokud si v Nastavení upravíte adresu serveru, požadavky poté míří na vámi zadanou adresu a tento přenos je mimo naši kontrolu. Odstranění tokenu v Nastavení odešle ověřený požadavek na smazání a zrušení přístupu na nastavený server: po úspěšné odpovědi server okamžitě smaže synchronizované práce, směny a záznamy o mazání, zruší všechny sync tokeny uživatele a aplikace teprve poté odstraní místní token. Pokud požadavek selže, aplikace místní token ponechá a zobrazí chybu, místo aby tvrdila, že výmaz proběhl; zkuste akci zopakovat nebo nás kontaktujte, pokud server není dostupný.
+</p>
+<h3 style="font-size:1rem;margin-top:1.25rem;">2.4 Anonymní produktová analytika (zapnutá, lze vypnout)</h3>
+<p>
+  Abychom věděli, jestli uživatelé dokončí nastavení a které funkce používají, odesílá aplikace malé množství událostí o používání na <strong>náš vlastní server</strong> — ten samý, který popisuje bod 2.3, na samostatné adrese, která neobsluhuje nic jiného. Není v tom žádná analytická firma, v aplikaci není žádná analytická SDK a žádná reklamní síť. <strong>Po instalaci je zapnuté.</strong> Kdykoli to můžete vypnout v Nastavení → Soukromí; tím se zahodí identifikátor instalace popsaný níže a smaže se i to, co ještě čeká na odeslání, takže nic odeslaného potom už nelze spojit s tím, co bylo odesláno dřív.
+</p>
+<p>
+  Co se odesílá: názvy událostí z pevně daného seznamu (například ke kterému kroku nastavení jste došli nebo že směna byla přidána ručně, a ne stopkami), verze a build aplikace, verze iOS na jedno desetinné místo, jestli je zařízení telefon nebo tablet, jazyk aplikace a náhodný identifikátor, který se pro tuto instalaci vytvoří přímo ve vašem zařízení. Není to reklamní identifikátor ani Apple identifier for vendors — je to náhodná hodnota vytvořená ve vašem telefonu a je to jediné, co spojuje události jedné instalace dohromady.
+</p>
+<p>
+  Neodesíláme názvy pracovišť, mzdy, výdělky, spropitné, částky výplat, typ smlouvy, poznámky, přesná data ani časy směn, text z kalendáře, adresy, souřadnice ani geofence data. Není to jen slib: server přijímá pouze názvy událostí a hodnoty vlastností z pevného seznamu a cokoli jiného zahodí ještě před uložením, takže ani chyba v aplikaci nemůže vést k tomu, že bychom taková data měli. Časy událostí se zaokrouhlují dolů na minuty a <strong>vaše IP adresa se nikdy nezaznamenává</strong>. Tyto události se nikdy nespojují s daty o směnách podle bodu 2.3 a server nemá jak zjistit, ke kterému účtu — pokud vůbec nějakému — identifikátor instalace patří. Data jsou uložena v EU na našem vlastním hardwaru a nejpozději po 400 dnech se automaticky mažou.
 </p>
 
 <h2>3. Zálohy zařízení přes iCloud (Apple)</h2>
@@ -70,7 +80,7 @@
 
 <h2>5. Sdílení dat</h2>
 <p>
-  Neprodáváme ani nepronajímáme vaše data a nesdílíme je s inzerenty ani analytickými službami. Pokud zapnete AI Sync (2.3), vaše data o pracích a směnách se odešlou na server nastavený v aplikaci — ve výchozím stavu server, který provozujeme my — a slouží výhradně k tomu, aby k vašim směnám mohl přistupovat váš připojený AI asistent. Tato data dále neprodáváme ani nesdílíme s třetími stranami.
+  Neprodáváme ani nepronajímáme vaše data, nesdílíme je s inzerenty a nepoužíváme žádného externího poskytovatele analytiky. Data o používání popsaná v bodě 2.4 zůstávají na našem vlastním serveru. Pokud zapnete AI Sync (2.3), vaše data o pracích a směnách se odešlou na server nastavený v aplikaci — ve výchozím stavu server, který provozujeme my — a slouží výhradně k tomu, aby k vašim směnám mohl přistupovat váš připojený AI asistent. Tato data dále neprodáváme ani nesdílíme s třetími stranami.
 </p>
 
 <h2>6. Bezpečnost</h2>
