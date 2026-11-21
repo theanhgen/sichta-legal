@@ -8,6 +8,7 @@
 @font-face { font-family: 'Handjet'; src: url('fonts/Handjet-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
 
 :root {
+  color-scheme: only light;
   --bg: #F7F5F0;
   --surface: #FDFCFB;
   --panel: #E9E5DC;
