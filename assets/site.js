@@ -58,7 +58,6 @@
       set(q('int'), String(whole));
       roll(slots[0], Math.floor(cents / 10));
       roll(slots[1], cents % 10);
-      set(q('clock'), hm(now));
       var start = new Date(now.getTime() - el * 1000), end = new Date(start.getTime() + PLAN * 1000);
       set(q('start'), lang === 'cs' ? 'Začátek ' + hm(start) + ' → plán ' + hm(end)
                                     : 'Started ' + hm(start) + ' → plan ' + hm(end));
