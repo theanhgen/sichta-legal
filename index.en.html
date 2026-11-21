@@ -25,7 +25,8 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/Geist-Medium.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Handjet-Medium.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=2">
+<link rel="stylesheet" href="assets/site.css?v=4">
+<script src="assets/site.js?v=4" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -52,7 +53,7 @@
 </div>
 </section>
 
-<section class="stage-sec blk dots crop wrap" aria-label="Screenshots of the app">
+<section class="stage-sec blk dots crop wrap" data-shader aria-label="Screenshots of the app">
 <span class="tk tl"></span><span class="tk tr"></span><span class="tk bl"></span><span class="tk br"></span>
 <div class="dither" style="right: -160px; bottom: -200px; width: 720px; height: 720px"></div>
 <div class="dither" style="left: -220px; top: 120px; width: 520px; height: 520px"></div>
@@ -60,7 +61,19 @@
 <div class="stage">
 <figure class="win">
 <figcaption class="win-bar"><span>Shift running</span><span aria-hidden="true">×</span></figcaption>
-<img src="assets/img/run-en.webp" width="640" height="923" alt="A running shift: timer, 460 CZK earned so far, 170 CZK/h, 54% of plan" decoding="async">
+<div class="live" data-live="en">
+<img src="assets/img/run-en.webp" data-live-src="assets/img/run-en-live.webp" width="640" height="923" alt="A running shift: timer, 460 CZK earned so far, 170 CZK/h, 54% of plan" decoding="async">
+<svg class="live-ov" viewBox="0 0 1206 1740" aria-hidden="true" focusable="false">
+<text class="lv-sb" data-k="clock" x="155.7" y="116">21:54</text>
+<text class="lv-timer" data-k="timer" x="96" y="680">2:42:27</text>
+<text class="lv-int" data-k="int" x="96.4" y="900">460</text>
+<svg class="lv-cents" x="395" y="805" width="146" height="119" viewBox="0 0 146 119" overflow="hidden"><g class="lv-roll" data-k="c0"></g><g class="lv-roll" data-k="c1"></g></svg>
+<text class="lv-line" data-k="start" x="77.5" y="1257.8"></text>
+<rect class="lv-fill" data-k="fill" x="78" y="1298" width="570" height="30"/>
+<rect class="lv-frame" x="79.5" y="1299.5" width="1047" height="27"/>
+<text class="lv-line lv-muted" data-k="pct" x="77.7" y="1403.7"></text>
+</svg>
+</div>
 </figure>
 <figure class="win">
 <figcaption class="win-bar"><span>Income this month</span><span aria-hidden="true">×</span></figcaption>
