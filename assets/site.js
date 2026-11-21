@@ -85,8 +85,8 @@
   }
 
   /* ---- Stage shader -------------------------------------------------------
-     shFieldDither: a 3 pt grid whose squares are sized by two broad waves
-     drifting across, one wavelength per 10 s cycle, ink at 38 %, blurred 0.8.
+     The app's halftone (Dither.metal): a 3 pt grid of squares, ink at 38 %,
+     blurred 0.8, sized by data-shader="N" (1-3) large drifting blobs.
      15 fps; still under Reduce Motion, in a hidden tab and off screen. */
   var sec = document.querySelector('[data-shader]');
   if (!sec) return;
@@ -96,16 +96,24 @@
   var gl = canvas.getContext('webgl', { premultipliedAlpha: true, antialias: false, alpha: true });
   if (!gl) return;
   var vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  // The app's halftone squares (3 pt grid, ink at 38 %, blurred 0.8), sized here
+  // by a few large blobs drifting slowly across the stage instead of the app's
+  // dense wave field, so the stage carries 1-3 big soft shapes.
   var fs = [
     'precision mediump float;',
-    'uniform vec2 uSize;uniform float uPhase;uniform float uScale;uniform vec3 uColor;',
+    'uniform vec2 uSize;uniform float uT;uniform float uScale;uniform vec3 uColor;uniform float uN;',
+    'float blob(vec2 pos,vec2 c,float r){return 1.-smoothstep(0.18*r,r,length(pos-c));}',
     'void main(){',
     '  vec2 pos=vec2(gl_FragCoord.x,uSize.y*uScale-gl_FragCoord.y)/uScale;',
     '  vec2 cell=floor(pos/3.)*3.+1.5;',
-    '  vec2 q=cell/160.;',
-    '  float a=sin(6.2831853*(0.8*q.x+0.3*q.y-uPhase));',
-    '  float b=sin(6.2831853*(-0.35*q.x+0.9*q.y+uPhase));',
-    '  float tone=0.5+0.25*(a+b);',
+    '  float m=max(uSize.x,uSize.y);',
+    '  float r=m*(uN<1.5?0.5:(uN<2.5?0.4:0.32));',
+    '  vec2 c0=uSize*(vec2(0.32,0.78)+vec2(0.22*sin(uT*0.16),0.14*cos(uT*0.12)));',
+    '  vec2 c1=uSize*(vec2(0.82,0.18)+vec2(0.12*cos(uT*0.11+1.3),0.14*sin(uT*0.14+0.4)));',
+    '  vec2 c2=uSize*(vec2(0.55,0.10)+vec2(0.14*sin(uT*0.13+2.1),0.08*cos(uT*0.10+0.9)));',
+    '  float tone=blob(cell,c0,r);',
+    '  if(uN>1.5)tone=max(tone,0.85*blob(cell,c1,r*0.8));',
+    '  if(uN>2.5)tone=max(tone,0.75*blob(cell,c2,r*0.7));',
     '  float h=0.15+tone;',
     '  vec2 d=abs(pos-cell);',
     '  float cov=clamp((h-max(d.x,d.y))*uScale+0.5,0.,1.);',
@@ -126,18 +134,19 @@
   var loc = gl.getAttribLocation(prog, 'p');
   gl.enableVertexAttribArray(loc);
   gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-  var uSize = gl.getUniformLocation(prog, 'uSize'), uPhase = gl.getUniformLocation(prog, 'uPhase'),
+  var uSize = gl.getUniformLocation(prog, 'uSize'), uT = gl.getUniformLocation(prog, 'uT'), uN = gl.getUniformLocation(prog, 'uN'),
       uScale = gl.getUniformLocation(prog, 'uScale'), uColor = gl.getUniformLocation(prog, 'uColor');
   gl.uniform3f(uColor, 0x1E / 255, 0x1B / 255, 0x16 / 255);
+  gl.uniform1f(uN, parseFloat(sec.getAttribute('data-shader')) || 2);
 
   sec.insertBefore(canvas, sec.firstChild);
   sec.classList.add('shader-on');
 
-  var w = 0, hgt = 0, scale = 1, phase = 0;
+  var w = 0, hgt = 0, scale = 1, t = 0, t0 = 0;
   function draw() {
     gl.viewport(0, 0, canvas.width, canvas.height);
     gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
-    gl.uniform2f(uSize, w, hgt); gl.uniform1f(uScale, scale); gl.uniform1f(uPhase, phase);
+    gl.uniform2f(uSize, w, hgt); gl.uniform1f(uScale, scale); gl.uniform1f(uT, t);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
   function resize() {
@@ -155,10 +164,10 @@
   function tick(now) {
     raf = 0;
     if (still()) { start = null; return; }
-    if (start === null) start = now;
+    if (start === null) start = now - t0 * 1000;
     if (now - last >= 1000 / 15) {
       last = now;
-      phase = ((now - start) / 10000) % 1;
+      t = t0 = (now - start) / 1000;
       draw();
     }
     raf = requestAnimationFrame(tick);

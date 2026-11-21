@@ -48,7 +48,7 @@ img { display: block; max-width: 100%; height: auto; }
 /* Type */
 .mono { font-family: var(--mono); font-weight: 500; font-size: 16px; line-height: 1; letter-spacing: .06em; text-transform: uppercase; }
 .mono, .chip, .win-bar, summary { font-variant-ligatures: none; word-spacing: .18em; }
-.hero-h { margin: 0; font-weight: 500; font-size: clamp(52px, 9.6vw, 140px); line-height: .86; letter-spacing: -.045em; }
+.hero-h { margin: 0; font-weight: 500; font-size: clamp(52px, 9.6vw, 140px); line-height: .95; letter-spacing: -.045em; }
 .sec-h { margin: 0; font-weight: 500; font-size: clamp(40px, 5.6vw, 82px); line-height: .9; letter-spacing: -.04em; }
 .lead { margin: 0; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.25; letter-spacing: .01em; }
 .body { margin: 0; font-size: 17px; line-height: 1.3; letter-spacing: .01em; }
