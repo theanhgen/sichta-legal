@@ -101,24 +101,26 @@
   // dense wave field, so the stage carries 1-3 big soft shapes.
   var fs = [
     'precision mediump float;',
-    'uniform vec2 uSize;uniform float uT;uniform float uScale;uniform vec3 uColor;uniform float uN;',
+    'uniform vec2 uSize;uniform float uT;uniform float uScale;uniform vec3 uC0;uniform vec3 uC1;uniform vec3 uC2;uniform float uN;uniform float uA;',
     'float blob(vec2 pos,vec2 c,float r){return 1.-smoothstep(0.18*r,r,length(pos-c));}',
     'void main(){',
     '  vec2 pos=vec2(gl_FragCoord.x,uSize.y*uScale-gl_FragCoord.y)/uScale;',
     '  vec2 cell=floor(pos/3.)*3.+1.5;',
     '  float m=max(uSize.x,uSize.y);',
     '  float r=m*(uN<1.5?0.5:(uN<2.5?0.4:0.32));',
-    '  vec2 c0=uSize*(vec2(0.32,0.78)+vec2(0.22*sin(uT*0.16),0.14*cos(uT*0.12)));',
-    '  vec2 c1=uSize*(vec2(0.82,0.18)+vec2(0.12*cos(uT*0.11+1.3),0.14*sin(uT*0.14+0.4)));',
-    '  vec2 c2=uSize*(vec2(0.55,0.10)+vec2(0.14*sin(uT*0.13+2.1),0.08*cos(uT*0.10+0.9)));',
-    '  float tone=blob(cell,c0,r);',
-    '  if(uN>1.5)tone=max(tone,0.85*blob(cell,c1,r*0.8));',
-    '  if(uN>2.5)tone=max(tone,0.75*blob(cell,c2,r*0.7));',
+    '  vec2 c0=uSize*(vec2(0.32,0.78)+vec2(0.22*sin(uT*0.32),0.14*cos(uT*0.24)));',
+    '  vec2 c1=uSize*(vec2(0.82,0.18)+vec2(0.12*cos(uT*0.22+1.3),0.14*sin(uT*0.28+0.4)));',
+    '  vec2 c2=uSize*(vec2(0.55,0.10)+vec2(0.14*sin(uT*0.26+2.1),0.08*cos(uT*0.20+0.9)));',
+    '  float b0=blob(cell,c0,r);',
+    '  float b1=uN>1.5?0.85*blob(cell,c1,r*0.8):0.;',
+    '  float b2=uN>2.5?0.75*blob(cell,c2,r*0.7):0.;',
+    '  float tone=max(b0,max(b1,b2));',
+    '  vec3 col=(uC0*b0+uC1*b1+uC2*b2+uC0*0.001)/(b0+b1+b2+0.001);',
     '  float h=0.15+tone;',
     '  vec2 d=abs(pos-cell);',
     '  float cov=clamp((h-max(d.x,d.y))*uScale+0.5,0.,1.);',
-    '  float al=0.38*cov;',
-    '  gl_FragColor=vec4(uColor*al,al);',
+    '  float al=uA*cov;',
+    '  gl_FragColor=vec4(col*al,al);',
     '}'
   ].join('\n');
   function sh(type, src) { var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null; }
@@ -134,9 +136,15 @@
   var loc = gl.getAttribLocation(prog, 'p');
   gl.enableVertexAttribArray(loc);
   gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-  var uSize = gl.getUniformLocation(prog, 'uSize'), uT = gl.getUniformLocation(prog, 'uT'), uN = gl.getUniformLocation(prog, 'uN'),
-      uScale = gl.getUniformLocation(prog, 'uScale'), uColor = gl.getUniformLocation(prog, 'uColor');
-  gl.uniform3f(uColor, 0x1E / 255, 0x1B / 255, 0x16 / 255);
+  var uSize = gl.getUniformLocation(prog, 'uSize'), uT = gl.getUniformLocation(prog, 'uT'), uN = gl.getUniformLocation(prog, 'uN'), uA = gl.getUniformLocation(prog, 'uA'),
+      uScale = gl.getUniformLocation(prog, 'uScale');
+  // data-colors="#hex,#hex,#hex": one per blob; data-alpha: square opacity.
+  var cols = (sec.getAttribute('data-colors') || '#1E1B16').split(',');
+  ['uC0', 'uC1', 'uC2'].forEach(function (u, i) {
+    var h = (cols[i] || cols[0]).trim().replace('#', '');
+    gl.uniform3f(gl.getUniformLocation(prog, u), parseInt(h.slice(0, 2), 16) / 255, parseInt(h.slice(2, 4), 16) / 255, parseInt(h.slice(4, 6), 16) / 255);
+  });
+  gl.uniform1f(uA, parseFloat(sec.getAttribute('data-alpha')) || 0.38);
   gl.uniform1f(uN, parseFloat(sec.getAttribute('data-shader')) || 2);
 
   sec.insertBefore(canvas, sec.firstChild);
