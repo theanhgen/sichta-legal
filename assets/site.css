@@ -8,7 +8,7 @@
 @font-face { font-family: 'Handjet'; src: url('fonts/Handjet-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
 
 :root {
-  color-scheme: only light;
+  color-scheme: light dark;
   --bg: #F7F5F0;
   --surface: #FDFCFB;
   --panel: #E9E5DC;
@@ -18,6 +18,21 @@
   --shadow: rgba(30, 27, 22, .32);
   --pad: clamp(16px, 2.2vw, 32px);
   --mono: 'Handjet', ui-monospace, monospace;
+}
+/* Dark: the app's Slate dark mode (AppTheme.swift, #97). Mint blocks and the
+   forest night section keep their own colours. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0F1113;
+    --surface: #191C1F;
+    --panel: #22262A;
+    --ink: #F2F4F6;
+    --muted: #98A0A8;
+    --fill: #2F7E3C;
+    --shadow: rgba(0, 0, 0, .6);
+  }
+  .night { --bg: #10291A; }
+  .foot { border-top: 1px solid #30353A; }
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
@@ -35,7 +50,8 @@ img { display: block; max-width: 100%; height: auto; }
 
 /* Blocks */
 .wrap { padding-left: var(--pad); padding-right: var(--pad); }
-.blk { --bg: #8CD49A; --muted: #2A4A35; --shadow: rgba(16, 41, 26, .4); background: var(--bg); color: var(--ink); }
+/* Colour block: the same mint in both modes, so it sets every token it uses. */
+.blk { --bg: #8CD49A; --surface: #FDFCFB; --panel: #E9E5DC; --ink: #1E1B16; --muted: #2A4A35; --fill: #2E7038; --shadow: rgba(16, 41, 26, .4); background: var(--bg); color: var(--ink); }
 .night { --bg: #10291A; --surface: #173524; --panel: #173524; --ink: #F4F2EE; --muted: #A9C2AF; --shadow: rgba(0, 0, 0, .5); background: var(--bg); color: var(--ink); }
 .dots { background-image: radial-gradient(color-mix(in srgb, var(--ink) 55%, transparent) .8px, transparent 1px); background-size: 8px 8px; }
 .dither { position: absolute; opacity: .6; background-image: radial-gradient(var(--ink) 1px, transparent 1.2px); background-size: 4px 4px; -webkit-mask-image: radial-gradient(closest-side, #000 35%, transparent 100%); mask-image: radial-gradient(closest-side, #000 35%, transparent 100%); pointer-events: none; }
@@ -65,7 +81,7 @@ main section[id] { scroll-margin-top: 48px; }
 .nav .brand { padding-left: var(--pad); font-weight: 600; font-size: 22px; letter-spacing: -.02em; }
 .nav .grp { display: flex; flex-wrap: wrap; }
 .nav a.cta { background: var(--ink); color: var(--bg); padding: 0 14px; }
-.nav a.cta:hover { text-decoration: none; background: var(--fill); }
+.nav a.cta:hover { text-decoration: none; background: var(--fill); color: #fff; }
 @media (max-width: 720px) {
   .nav .sections, .nav .wide { display: none; }
   .nav { font-size: 16px; flex-wrap: nowrap; }
